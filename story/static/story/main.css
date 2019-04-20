@@ -1,0 +1,64 @@
+.my_story_card {
+	margin: 20px;
+	box-shadow: 1px 1px 20px -15px;
+}
+.my_story_card:hover {
+	margin: 20px;
+	transform: scale(1.04);
+	box-shadow: 1px 10px 20px -10px grey;
+}
+.story_subtitle {
+	color: grey;
+	font-size: 14px;
+}
+.story_title{
+	color:black;
+}
+
+
+.profile_pic{
+	height: 100px;
+	width: 100px;
+}
+.comment {
+    margin: 20px 0px 20px 20px;
+}
+.myimgbox {
+	box-shadow: 1px 1px 20px -15px;
+	max-height: 300px;
+}
+
+.mycomment {
+	padding: 1.75em 0 0 1.75em;
+	margin: 0;
+	position: relative;
+    margin-top: 3.5em;
+    font-size: 17px;
+    border: solid #e8e8e8;
+    border-width: 1px 0 0 1px;
+    border-color: #92bd9a;
+}
+.myphoto {
+	margin: 20px;
+	max-height: 20%;
+	background-color: none;
+	padding: 40px;
+	border:10px solid black;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin: 20px;
+}
+.myicon {
+	background: url(../main/img/021-chat.svg); 
+	background-image: url(../main/img/021-chat.svg); 
+}
+.mysection {
+	margin: 20px;
+}
+.mydate {
+	color: #B7BCBC;
+}
+.sharebt {
+	margin-top: -10px;
+	width: 30px;
+	height: 30px;
+}

@@ -1,0 +1,93 @@
+{% extends "story/base.html" %}
+{% block content %}
+	<article class="media content-section">
+		
+	  <div class="media-body">
+	    <div class="article-metadata">
+	    	<div style="float: left;">
+	    		<img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+	    	</div>
+	    	<div style="margin-left: 120px; padding-top: 30px; margin-bottom: 40px;">
+	    		 <a class="mr-2" href="{% url 'profile' %}">{{ post.author }}</a>
+	    		<small class="text-muted">{{ post.date_posted | date:"F d, Y" }}</small>
+	    		<hr>
+	    	</div>
+	    	
+	      
+	      
+	      {% if object.author == user %}
+	      	<div>
+	      		<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+		      	<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+	      	</div>
+	      	
+	      {% endif %}
+	    </div>
+	    <div class="container">
+			<div >
+			    <h2 class="article-title" >{{ post.title }}</h2>
+			</div>
+		</div>
+		<div class="container img-thumbnail">
+			{% if post.photo_post %}
+		    	<div class="col-md-12 card-img" >
+				  <div style=" ">
+				     <img src="{{ post.photo_post.url }}">
+				   </div>
+				</div>
+	            
+		     {% endif %}
+		</div>
+	    <div class="container">
+	    	<hr>
+	    	<p class="article-content">{{ post.content }}</p>
+	    	<hr>
+		    {% if user.is_authenticated %}
+			     <a class="btn btn-info" href="{% url 'post-edit' pk=post.pk %}">Edit Post</a>
+			{% endif %}
+			<a class="btn btn-secondary" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+	    </div>
+	    
+	  </div>
+	  </article>
+	  <hr>
+	  
+	  <h2>{{ post.comments.count }} comments on '{{ post.title }}'</h2>
+	  <br>
+	  
+		{% for comment in post.comments.all %}
+		    <div class="mycomment">
+		    	<div style="float: left;">
+		    		<img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+		    	</div>
+		    	<div style="margin-left: 120px; margin-top: 10px; margin-bottom: 30px;">
+		    		 <strong>{{ comment.author }}</strong>
+		    		<div class="mydate" style="color:#898989;">{{ comment.date_posted }}</div>
+		    		<hr>
+		    	</div>
+		       
+		        <p>{{ comment.content|linebreaks }}</p>
+		        <!-- reply of comm;ent -->
+		        <a class="btn btn-secondary" href="{% url 'reply' pk=post.pk pk1=comment.pk %}">reply</a>
+			    {% for reply in comment.reply.all %}
+				    <div class="mycomment">
+
+				    	<div style="float: left;">
+				    		<img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+				    	</div>
+				    	<div style="margin-left: 120px; margin-top: 10px; margin-bottom: 30px;">
+				    		 <strong>{{ reply.author }}</strong>
+				    		<div class="mydate" style="color:#898989;">{{ reply.date_posted }}</div>
+				    		<hr>
+				    	</div>
+				       
+				        <p>{{ reply.content|linebreaks }}</p>
+				    </div>
+				{% endfor %}
+		    </div>
+		    
+		{% empty %}
+		    <p>No comments here yet :(</p>
+		{% endfor %}
+	
+{% endblock content %}

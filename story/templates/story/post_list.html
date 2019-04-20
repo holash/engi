@@ -1,0 +1,44 @@
+{% extends "story/base.html" %}
+{% load social_share %}
+{% block content %}
+	<div class="row">
+		{% for post in posts %}
+		<div class="my_story_card">
+			<a href="{% url 'post-detail' post.id %}" style="text-decoration: none;" >
+				<div class="card" style="width: 20rem;">
+				  <img src="{{ post.photo_post.url }}" class="card-img-top col-md-12 myimgbox" alt="...">
+				  <div class="card-body">
+				    <p class="card-subtitle story_subtitle">{{ post.category }}</p>
+				    <h5 class="card-title story_title">{{ post.title }}</h5>
+				    <div class="">
+					  <div class="row">
+					    <div class="col-sm">
+					      <P class="card-subtitle story_subtitle">By {{ post.author }}</P>
+					    </div>
+					    <div class="col-sm">
+					      <P style="float: right;" class="card-subtitle story_subtitle">{{ post.comments.count }}</P>
+					    </div>
+					  </div>
+					</div>
+				    <hr>
+				    <div class="container">
+					  <div class="row">
+					    <div class="col-sm">
+					    	<p class="card-subtitle story_subtitle" style="font-size: 12px;">{{ post.date_posted }}</p>
+					    </div>
+					    <a href="https://www.facebook.com/">
+					    	<img src="/static/img/013-facebook.svg" class="sharebt">
+					    </a>
+					    
+					  </div>
+					</div>
+				    
+				  </div>
+				</div>
+			</a>
+		</div>
+		{% endfor %}
+	</div>
+	
+		
+{% endblock content %}
